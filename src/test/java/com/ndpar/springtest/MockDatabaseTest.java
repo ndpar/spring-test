@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:appclicationContext.xml"})
+@DirtiesContext
 public class MockDatabaseTest {
 
     private Database mockDatabase;
@@ -24,7 +25,7 @@ public class MockDatabaseTest {
         application.setDatabase(mockDatabase);
     }
 
-    @Test @DirtiesContext
+    @Test
     public void test() {
         application.businessMethod("input");
         verify(mockDatabase, times(1)).persist("Processed input");

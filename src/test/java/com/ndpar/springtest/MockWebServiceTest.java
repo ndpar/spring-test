@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:appclicationContext.xml"})
+@DirtiesContext
 public class MockWebServiceTest {
 
     private WebService mockWebService;
@@ -24,7 +25,7 @@ public class MockWebServiceTest {
         application.setWebService(mockWebService);
     }
 
-    @Test @DirtiesContext
+    @Test
     public void test() {
         application.businessMethod("input");
         verify(mockWebService, times(1)).call("input");
